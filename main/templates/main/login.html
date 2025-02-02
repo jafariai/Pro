@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block script %} {% endblock %}
+
+{% block css %} {% endblock %}
+
+{% block title %} کلبه سلامت {% endblock %}
+
+{% block body %}    
+
+    {% include "header.html" %}
+    <main class="margin">
+            <section class="register-section padding-login">
+                <h2>ورود</h2>
+                
+                <form method="POST" class="register-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                    <label for="id_username">نام کاربری </label>
+                    {{ form.username }}
+                    </div>
+                    <div class="form-group">
+                    <label for="id_password">پسورد </label>
+                    {{ form.password }}
+                    <br><br>
+                    </div>
+                    
+                    
+                    <button type="submit" class="register-button"><a style="text-decoration:none ; color: inherit"  >ورود</a></button>
+                </form>
+            </section>
+        </main>
+
+        {% include "footer.html" %}
+
+        {% endblock %}
+        

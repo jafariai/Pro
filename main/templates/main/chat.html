@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>ارتباط با مربی - کلبه سلامت</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>کلبه سلامت</h1>
+            <p style="color: black">تغییر شیوه زندگی</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">خانه</a></li>
+                <li><a href="#">برنامه‌ها</a>
+                    <ul class="dropdown">
+                        <li><a href="chest.html">سینه</a></li>
+                        <li><a href="leg.html">پا</a></li>
+                        <li><a href="Armpit.html">زیر بغل</a></li>
+                        <li><a href="shoulder.html">سرشانه</a></li>
+                        <li><a href="Arm.html">بازو</a></li>
+                        <li><a href="belly.html">شکم</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">درباره ما</a></li>
+                <li><a href="#">تماس با ما</a></li>
+                <li><a href="register.html">ثبت نام</a></li>
+                <li><a href="login.html">ورود</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="chat-section">
+            <h2>ارتباط با مربی</h2>
+            <div class="tabs">
+                <button class="tablink" onclick="openTab(event, 'unanswered-tickets')">تیکت‌های در انتظار</button>
+                <button class="tablink" onclick="openTab(event, 'answered-tickets')">تیکت‌های پاسخ داده شده</button>
+                <button class="tablink" onclick="openTab(event, 'sent-messages')">پیام‌های ارسال شده</button>
+            </div>
+            <div id="unanswered-tickets" class="tabcontent">
+                <div class="chat-box" id="chat-box-unanswered">
+                    <!-- تیکت‌های در انتظار اینجا نمایش داده می‌شوند -->
+                </div>
+            </div>
+            <div id="answered-tickets" class="tabcontent" style="display:none;">
+                <div class="chat-box" id="chat-box-answered">
+                    <!-- تیکت‌های پاسخ داده شده اینجا نمایش داده می‌شوند -->
+                </div>
+            </div>
+            <div id="sent-messages" class="tabcontent" style="display:none;">
+                <div class="chat-box" id="chat-box-sent">
+                    <!-- پیام‌های ارسال شده اینجا نمایش داده می‌شوند -->
+                </div>
+            </div>
+            <form id="chat-form">
+                <div class="form-group">
+                    <input type="text" id="chat-input" placeholder="پیام خود را بنویسید..." required>
+                    <button type="submit" class="send-button">ارسال</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-section">
+            <h3>ما را در شبکه‌های اجتماعی دنبال کنید.</h3>
+            <div class="social-icons">
+                <a href="#"><img src="telegram-icon.png" alt="تلگرام"></a>
+                <a href="#"><img src="instagram-icon.png" alt="اینستاگرام"></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>دسترسی سریع</h3>
+            <p><a style="color:black;text-decoration: none;" href="#">مقالات</a></p>
+            <p><a style="color:black;text-decoration: none;" href="#">باشگاه</a></p>
+        </div>
+        <div class="footer-section">
+            <p>تو باشگاه بعد تمرین وزنه هارو سر جاش میزاریم :)</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('chat-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const chatInput = document.getElementById('chat-input');
+            const chatBox = document.getElementById('chat-box-unanswered');
+            const message = chatInput.value;
+            if (message.trim() !== '') {
+                const newMessage = document.createElement('div');
+                newMessage.className = 'chat-message user';
+                newMessage.textContent = message;
+                chatBox.appendChild(newMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                chatInput.value = '';
+                
+                // پاسخ خودکار از مربی (برای شبیه‌سازی)
+                setTimeout(function() {
+                    const coachMessage = document.createElement('div');
+                    coachMessage.className = 'chat-message coach';
+                    coachMessage.textContent = 'پیام شما دریافت شد. مربی در اسرع وقت پاسخ خواهد داد.';
+                    document.getElementById('chat-box-answered').appendChild(coachMessage);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 1000);
+            }
+        });
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>

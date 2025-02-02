@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block script %} {% endblock %}
+
+{% block css %} {% endblock %}
+
+{% block title %} کلبه سلامت {% endblock %}
+
+{% block body %}    
+
+    {% include "header.html" %}
+    <main class="margin">
+
+        
+        <section class="slider">
+            <h2> برنامه های ورزشی</h2>
+            <div class="slides container">        
+                <div class="row">
+                {% for program in programs %}
+                <div class="slide col-lg-4">
+                    <a href="{% url 'main:program_detail' program.program_id %}">
+                        {% if program.image %}
+                            <img class="half-size" src="{{ program.image.url }}" alt="{{ program.name }}" >
+                        {% else %}
+                            <img src="{% static 'img/pict/workout1.jpg' %}" alt="Default Image">
+                        {% endif %}
+                    </a>
+                    <p>{{ program.name }}</p>
+                    <p class="font-small">{{ program.desc|truncatewords:10 }}</p>
+                    <button class="button">
+                        <a  href="{% url 'main:program_detail' program.program_id %}">
+                            مشاهده بیشتر
+                        </a>
+                    </button>
+                </div>
+                {% endfor %}        
+            </div>
+        </section>
+
+        <div class="space">
+
+        </div>
+
+        <section class="slider">
+            <h2> برنامه های غذایی</h2>
+            <div class="slides container">        
+                <div class="row">
+                {% for nutrient in nutrients %}
+                <div class="slide col-lg-4">
+                    <a href="{% url 'main:nutrient_detail' nutrient.program_id %}">
+                        {% if nutrient.image %}
+                            <img class="half-size" src="{{ nutrient.image.url }}" alt="{{ nutrient.name }}" >
+                        {% else %}
+                            <img src="{% static 'img/pict/workout1.jpg' %}" alt="Default Image">
+                        {% endif %}
+                    </a>
+                    <p>{{ nutrient.name }}</p>
+                    <p class="font-small">{{ nutrient.desc|truncatewords:10 }}</p>
+                    <button class="button">
+                        <a  href="{% url 'main:nutrient_detail' nutrient.program_id %}">
+                            مشاهده بیشتر
+                        </a>
+                    </button>
+                </div>
+                {% endfor %}        
+            </div>
+        </section>
+
+    </main>
+    
+    {% include "footer.html" %}
+
+{% endblock %}

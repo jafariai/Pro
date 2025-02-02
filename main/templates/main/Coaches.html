@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block script %} {% endblock %}
+
+{% block css %} {% endblock %}
+
+{% block title %} کلبه سلامت {% endblock %}
+
+{% block body %}    
+
+    {% include "header.html" %}
+    <main class="margin">
+
+        
+        <section class="slider">
+            <h2>  مربیان ما</h2>
+            <div class="container">        
+                <div class="row">
+                {% for Coach in Coachs %}
+                <div class="coach-slide col-lg-4">
+                    <a href="">
+                        <img class="half-size" src="{% static 'img/icon/coach.png' %}" alt="" >
+                    </a>
+                    <p>{{ Coach.name }}</p>
+                    <p class="font-small">{{ Coach.email }}</p>
+
+                </div>
+                {% endfor %}        
+            </div>
+        </section>
+
+        <div class="space">
+
+        </div>
+
+    </main>
+    
+    {% include "footer.html" %}
+
+{% endblock %}

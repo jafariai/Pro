@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block script %} {% endblock %}
+
+{% block css %} {% endblock %}
+
+{% block title %} کلبه سلامت {% endblock %}
+
+{% block body %}    
+
+    {% include "header.html" %}
+
+    <main class="margin">
+        <section class="register-section padding-login">
+            <h2>ثبت نام</h2>
+            
+            <!-- Display form errors -->
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>خطا!</strong> لطفا خطاهای زیر را اصلاح کنید:
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <form method="POST" class="register-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">نام کاربری :</label>
+                    {{ form.username }} <br><br>    
+                </div>
+
+                <div class="form-group">
+                    <label for="id_password1"> رمز عبور </label>
+                    {{ form.password1 }}<br><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_password2">تایید رمز عبور  :</label>
+                    {{ form.password2 }}<br><br>
+                </div>
+                
+                <div class="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">تایید مقررات سایت</label><br><br>
+                </div>
+                
+                <button type="submit" class="register-button">ثبت نام</button>
+            </form>
+        </section>
+    </main>
+
+    {% include "footer.html" %}
+
+{% endblock %}

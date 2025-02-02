@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ nutrient.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include "header.html" %}
+    <div class="container text-senter margin">
+        <h1>{{ nutrient.name }}</h1>
+        <div class="program-detail">
+            {% if nutrient.image %}
+                <img src="{{ nutrient.image.url }}" alt="{{ nutrient.name }}">
+            {% else %}
+                <img src="{% static 'img/pict/workout1.jpg' %}" alt="Default Image">
+            {% endif %}
+            <p>{{ nutrient.desc }}</p>
+            <p><strong>دسته بندی:</strong> {{ nutrient.category }}</p>
+            <p><strong>قیمت:</strong>  تومان {{ nutrient.price }}</p>
+
+            <h2>غذاهای این برنامه</h2>
+            {% for food in nutrient.foods.all %}
+                <span>{{ food.food_name }} </span>
+            {% endfor %}
+            
+        </div>
+    </div>
+    {% include "footer.html" %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% load static %}
+
+<header>
+    
+    <nav>
+        <ul>
+            <li><a href="{% url "main:index" %}">خانه</a></li>
+            <li><a href="#">درباره ما</a></li>
+            <li><a href="{% url "main:coachs" %}">مربی ها</a></li>
+
+            {% if user.is_authenticated %}
+            <li><a href="{% url "main:ProgramRequest" %}">درخواست برنامه</a></li> 
+            <li><a href="{% url "main:logout" %}">خروج</a></li>    
+            {% else %}
+            <li><a href="{% url "main:signup" %}">ثبت نام</a></li>
+            <li><a href="{% url "main:login" %}">ورود</a></li>
+            {% endif %}
+            
+        </ul>
+
+
+    </nav>
+</header>
